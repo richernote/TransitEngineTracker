@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+    head
+        meta(charset="UTF-8")
+        meta(http-equiv="X-UA-Compatible", content="IE=edge")
+        meta(name="viewport", content="width=device-width, initial-scale=1.0")
+        title #{title}
+        script(src='/main.js')
+    body
+        h1 Transit Engine Tracker
+        form(action="/post" method="POST")
+            input(type= "text" id="bus-number")
+            input(type="text" id="engine-number")
+            button(type="submit" id="submit") submit
+
+        table(border="1")
+            tr
+                th Bus number
+                th Engine Number
+                th Engine Model
+            tr
+                td 9496
+                td 5114
+                td ISB
+
+
+        hr
+        p made with TypeScript, Express, Pug and Tailwind
+        p made by Richard Nolet
