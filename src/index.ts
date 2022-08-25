@@ -5,6 +5,7 @@ import path from 'path'
 import { MongoClient } from 'mongodb'
 import process from 'process'
 const app = express()
+const PORT = 3001
 
 app.set('view engine', 'pug')
 app.use(express.static('public'))
@@ -61,6 +62,6 @@ MongoClient.connect(`mongodb+srv://transittracker:${process.env.TRACKERPASS}@clu
 
 
 // Start Server
-app.listen(3001, () => {
-    console.log("TS server is running...")
+app.listen(PORT, () => {
+    console.log(`TS server is running on port ${PORT}`)
 })
