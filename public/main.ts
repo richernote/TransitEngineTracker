@@ -18,7 +18,7 @@ window.addEventListener('load', () =>{
     }
 
 
-    function deleteEntry():void {
+    function deleteEntry(): void {
 
         const deleteConfirm = confirm("Are you sure you want to delete?")
 
@@ -33,6 +33,7 @@ window.addEventListener('load', () =>{
             }).then(res => {
                 if(res.ok) return res.json()
             }).then(okay => {
+                // Refresh to show deletion
                 window.location.reload()
                 alert(okay)
             })

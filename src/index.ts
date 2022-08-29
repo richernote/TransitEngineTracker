@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 import express from 'express'
-import path from 'path'
 import { MongoClient } from 'mongodb'
 import process from 'process'
 import bodyParser from 'body-parser'
@@ -14,11 +13,6 @@ app.use(express.static('public'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-
-interface Engine {
-    busNumber: number;
-    engineNumber: number;
-}
 
 MongoClient.connect(`mongodb+srv://transittracker:${process.env.TRACKERPASS}@cluster0.fmdy7xd.mongodb.net/?retryWrites=true&w=majority`)
 .then(client => {
@@ -41,7 +35,7 @@ MongoClient.connect(`mongodb+srv://transittracker:${process.env.TRACKERPASS}@clu
             }).catch(err => console.log(err))
     })
 
-
+    // DELETE from db
     app.delete("/delete", (req, res) => {
         collection?.deleteOne({
             //insertedId is the unique ID mongo uses
