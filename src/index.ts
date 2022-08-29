@@ -25,23 +25,31 @@ MongoClient.connect(`mongodb+srv://transittracker:${process.env.TRACKERPASS}@clu
     const db = client?.db('busengine')
     const collection = db?.collection('elements')
 
+    // Create new posting
     app.post("/post", (req, res) => {
         collection?.insertOne(req.body)
             .then(result => {
-                // console.log(result)
                 res.redirect('/')
-            })
+            }).catch(err => console.log(err))
     })
 
-
-    // Home route
+    // READ from db
     app.get("/", (req, res) => {
         const cursor = collection?.find().toArray()
             .then(result => {
                 res.render("index", {result})
-            })
+            }).catch(err => console.log(err))
     })
 
+
+    app.delete("/delete", (req, res) => {
+        collection?.deleteOne({
+            //insertedId is the unique ID mongo uses
+            insertedId: req.body.id
+        }).then(result => {
+            res.json("Bus has been deleted")
+        }).catch(err => console.log(err))
+    })
     
 }).catch((err: ErrorEvent) => console.log(err))
 
