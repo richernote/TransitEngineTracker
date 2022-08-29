@@ -1,31 +1,9 @@
-interface Engine {
-    busNumber: number;
-    engineNumber: number;
-}
+window.addEventListener('load', () =>{
+    const table: HTMLTableSectionElement | null = document.querySelector("tbody");
 
-try {
-    fetch('../engines', {
-        method: "get"
-    }).then(res => res.json())
-    .then(data => {
-        const table = document.querySelector("#table")
-        data.forEach((item: Engine) => {
-            const newRow = document.createElement("tr")
-            const busNum = document.createElement("td")
+    table?.addEventListener("click", (e): void => {
+        const row = e.target as Element
 
-            busNum.appendChild(document.createTextNode(item.busNumber.toString()))
-            newRow.appendChild(busNum)
-
-            const engineNum = document.createElement("td")
-            engineNum.appendChild(document.createTextNode(item.engineNumber.toString()))
-            
-            newRow.appendChild(engineNum)
-            table?.appendChild(newRow)
-
-            console.log(newRow)
-        })
+        console.log(row.parentElement?.id)
     })
-}
-catch(err: any) {
-    console.log(err)
-}
+})

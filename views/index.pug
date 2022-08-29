@@ -9,16 +9,23 @@ html(lang="en")
     body
         h1 Transit Engine Tracker
         form(action="/post" method="POST")
-            input(type= "text" id="bus-number")
-            input(type="text" id="engine-number")
-            button(type="submit" id="submit") submit
+            input(type="text" name="work-order" id="work-order" minlength="7" maxlength="7" placeholder="Work Order" required)
+            input(type= "tex" name="bus-number" id="bus-number" minlength="4" maxlength="4" placeholder="Bus Number" required)
+            input(type="text" name="engine-number" id="engine-number" minlength="4" maxlength="4" placeholder="Engine Number" required)
+            input(type="submit" id="submit")
 
         table(border="1" id="table")
             tr
+                th Work Order
                 th Bus number
                 th Engine Number
-                th Engine Model
 
+            for bus of result 
+                tr(id= bus["_id"])
+                    td= bus["work-order"]
+                    td= bus["bus-number"]
+                    td= bus["engine-number"]
+                    td delete
 
         hr
         p made with TypeScript, Express, Pug and Tailwind
